@@ -51,6 +51,7 @@ ifeq ($(ARCH_ARM_HAVE_NEON),true)
 	LOCAL_CFLAGS += -D__ARM_HAVE_NEON
 endif
 
+ifneq ($(TARGET_GCC_VERSION),4.6)
 ifeq ($(TARGET_USE_GRAPHITE),true)
     LOCAL_CFLAGS += \
         -floop-interchange \
@@ -58,6 +59,7 @@ ifeq ($(TARGET_USE_GRAPHITE),true)
         -floop-block \
         -ffast-math \
         -funsafe-loop-optimizations
+endif
 endif
 
 # special checks for alpha == 0 and alpha == 255 in S32A_Opaque_BlitRow32
@@ -384,6 +386,7 @@ ifeq ($(ARCH_ARM_HAVE_NEON),true)
        LOCAL_CFLAGS += -DGR_ANDROID_BUILD=1
 endif
 
+ifneq ($(TARGET_GCC_VERSION),4.6)
 ifeq ($(TARGET_USE_GRAPHITE),true)
     LOCAL_CFLAGS += \
         -floop-interchange \
@@ -391,6 +394,7 @@ ifeq ($(TARGET_USE_GRAPHITE),true)
         -floop-block \
         -ffast-math \
         -funsafe-loop-optimizations
+endif
 endif
 
 LOCAL_SRC_FILES:= \
